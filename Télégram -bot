@@ -1,0 +1,20 @@
+from telegram import Update
+from telegram.ext import Application, CommandHandler, ContextTypes
+import os
+
+# Le token de ton bot (remplace "8055511633:AAF7G6YgFldf7tv5P0j4i2UpgNPeTYKdceU" par le token donné par BotFather)
+TOKEN = os.getenv("BOT_TOKEN", "TON_TOKEN_ICI")
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Bonjour 👋, je suis ton bot Telegram !")
+
+def main():
+    app = Application.builder().token(TOKEN).build()
+
+    app.add_handler(CommandHandler("start", start))
+
+    print("Bot lancé...")
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
